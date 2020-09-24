@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1.1", "..\lab1.1\lab1.1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1.1.1", "..\bai1.1.1\lab1.1.1\lab1.1.1.csproj", "{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "..\WebApplication\WebApplication\WebApplication.csproj", "{664D8B22-42EE-406D-8879-0E5FD314B8AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie", "..\Movie\Movie\Movie.csproj", "{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
