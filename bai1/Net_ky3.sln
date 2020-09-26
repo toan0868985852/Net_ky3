@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfClub", "..\GolfClub\Gol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shoppingmails", "..\shoppingmails\shoppingmails\shoppingmails.csproj", "{BBF0DDDD-9D57-4522-9528-86DBF5478184}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagerment.Tests", "..\StudentManagerment\StudentManagerment.Tests\StudentManagerment.Tests.csproj", "{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{BBF0DDDD-9D57-4522-9528-86DBF5478184}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBF0DDDD-9D57-4522-9528-86DBF5478184}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBF0DDDD-9D57-4522-9528-86DBF5478184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
