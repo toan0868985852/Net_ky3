@@ -23,6 +23,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shoppingmails", "..\shoppin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagerment.Tests", "..\StudentManagerment\StudentManagerment.Tests\StudentManagerment.Tests.csproj", "{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Movie", "..\MVC_Movie\MVC_Movie\MVC_Movie.csproj", "{2E10884C-9CD3-4411-AE8A-E69EDE058410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web_api", "..\lab4\web_api\web_api\web_api.csproj", "{14288804-7831-4AF2-BDAF-5A4703D44897}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book", "..\lab4\Book\Book\Book.csproj", "{706E3F86-6831-4768-A10C-43766B7F6E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newspaper1", "..\lab4\Newspaper1\Newspaper1.csproj", "{FBA2EFA2-346E-479B-8032-E1850B00D075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentManagement", "..\lab4\ContentManagement\ContentManagement.csproj", "{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +79,26 @@ Global
 		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C5DE8B9-9CAB-4CB5-A885-07AE158D643C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E10884C-9CD3-4411-AE8A-E69EDE058410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E10884C-9CD3-4411-AE8A-E69EDE058410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E10884C-9CD3-4411-AE8A-E69EDE058410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E10884C-9CD3-4411-AE8A-E69EDE058410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14288804-7831-4AF2-BDAF-5A4703D44897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14288804-7831-4AF2-BDAF-5A4703D44897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14288804-7831-4AF2-BDAF-5A4703D44897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14288804-7831-4AF2-BDAF-5A4703D44897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{706E3F86-6831-4768-A10C-43766B7F6E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{706E3F86-6831-4768-A10C-43766B7F6E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{706E3F86-6831-4768-A10C-43766B7F6E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{706E3F86-6831-4768-A10C-43766B7F6E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA2EFA2-346E-479B-8032-E1850B00D075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA2EFA2-346E-479B-8032-E1850B00D075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA2EFA2-346E-479B-8032-E1850B00D075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA2EFA2-346E-479B-8032-E1850B00D075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -72,11 +72,12 @@
              </tr>
              <tr>
                  <td>
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email is required" ForeColor="Red" ControlToValidate="txtEmail" Display="Dynamic" Text="Page Errors"></asp:RequiredFieldValidator>
+                    <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email is required" ForeColor="Red" ControlToValidate="txtEmail" Display="Dynamic" Text="Page Errors"></asp:RequiredFieldValidator>
                      <br />
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Username is required" ForeColor="Red" ControlToValidate="txtUsername" Display="Dynamic" Text="Error message 1."></asp:RequiredFieldValidator>
                      <br />
-                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Password is required" ForeColor="Red" ControlToValidate="txtPassword" Display="Dynamic" Text="Error message 2."></asp:RequiredFieldValidator>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Password is required" ForeColor="Red" ControlToValidate="txtPassword" Display="Dynamic" Text="Error message 2."></asp:RequiredFieldValidator>--%>
+                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" HeaderText="Page Error"/>
                  </td>
              </tr>
              <tr>
