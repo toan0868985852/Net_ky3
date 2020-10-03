@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1", "..\lab1\lab1\lab1.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1.1", "..\lab1.1\lab1.1\lab1.1.csproj", "{375EC26B-5A4B-47DB-9814-37407CE72A5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1.1.1", "..\bai1.1.1\lab1.1.1\lab1.1.1.csproj", "{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "..\WebApplication\WebApplication\WebApplication.csproj", "{664D8B22-42EE-406D-8879-0E5FD314B8AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie", "..\Movie\Movie\Movie.csproj", "{EC7F4E89-6230-4075-9BB0-1C4E855CF5A0}"
@@ -29,9 +27,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web_api", "..\lab4\web_api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Book", "..\lab4\Book\Book\Book.csproj", "{706E3F86-6831-4768-A10C-43766B7F6E59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newspaper1", "..\lab4\Newspaper1\Newspaper1.csproj", "{FBA2EFA2-346E-479B-8032-E1850B00D075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newspaper1", "..\lab4\Newspaper1\Newspaper1.csproj", "{FBA2EFA2-346E-479B-8032-E1850B00D075}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentManagement", "..\lab4\ContentManagement\ContentManagement.csproj", "{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "..\lab4\Bank\Bank.csproj", "{9AFF5395-2E36-414D-939F-CF52BBB4C168}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,6 @@ Global
 		{375EC26B-5A4B-47DB-9814-37407CE72A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{375EC26B-5A4B-47DB-9814-37407CE72A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{375EC26B-5A4B-47DB-9814-37407CE72A5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AC6AA3E-062D-40C2-96B1-AD29F74D51D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{664D8B22-42EE-406D-8879-0E5FD314B8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -99,6 +95,10 @@ Global
 		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD34AC71-33D1-4411-8AF0-0C71DF859D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AFF5395-2E36-414D-939F-CF52BBB4C168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AFF5395-2E36-414D-939F-CF52BBB4C168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AFF5395-2E36-414D-939F-CF52BBB4C168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AFF5395-2E36-414D-939F-CF52BBB4C168}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

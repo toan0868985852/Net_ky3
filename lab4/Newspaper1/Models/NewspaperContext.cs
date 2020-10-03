@@ -8,6 +8,11 @@ namespace Newspaper1.Models
 {
     public partial class NewspaperContext 
     {
-    
+        public NewspaperContext()
+        {
+
+        }
+
+   
     }
 }
