@@ -24,7 +24,7 @@ namespace Book.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(
-            [Bind("ID, Title, ReleaseDate, Cost")] BookModel bookModel)
+            [Bind("ID,Title,ReleaseData,Cost")] BookModel bookModel)
         {
             if (ModelState.IsValid)
             {

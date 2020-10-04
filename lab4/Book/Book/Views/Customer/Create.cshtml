@@ -9,26 +9,23 @@
 <h4>CustomerModel</h4>
 <hr />
 <script type="text/javascript">
-
     function validateForm() {
-        var isValidateForm = true;
+        var isValidForm = true;
         var nameValue = document.getElementById("Name").value;
         var emailValue = document.getElementById("EmailId").value;
 
         if (nameValue == null || nameValue == "") {
-            document.getElementById("validationName")
-                .textContent = "Customer Name is required.";
-            isValidateForm = false;
+            document.getElementById("spanName").textContent = "Customer Name is required";
+            isValidForm = false;
         }
-
         if (emailValue == null || emailValue == "") {
-            document.getElementById("validationEmail")
-                .textContent = "Customer Name is required.";
-            isValidateForm = false;
+            document.getElementById("spanEmailId").textContent = "Customer Email is required";
+            isValidForm = false;
         }
-        return isValidateForm;
+        return isValidForm;
     }
 </script>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -36,12 +33,12 @@
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <span id="spanName" asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EmailId" class="control-label"></label>
                 <input asp-for="EmailId" class="form-control" />
-                <span asp-validation-for="EmailId" class="text-danger"></span>
+                <span id="spanEmailId" asp-validation-for="EmailId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

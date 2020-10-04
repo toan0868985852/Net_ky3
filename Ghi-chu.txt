@@ -1,0 +1,1 @@
+Scanffold_DbContext "Server=DESKTOP-TJF70QU\SQLEXPRESS;Database=Newspaper;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models

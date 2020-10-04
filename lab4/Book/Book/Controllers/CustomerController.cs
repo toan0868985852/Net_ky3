@@ -13,7 +13,6 @@ namespace Book.Controllers
         {
             return View();
         }
-
         public IActionResult Create()
         {
             return View();
@@ -22,8 +21,7 @@ namespace Book.Controllers
         //POST: Customer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(
-            [Bind("Name, EmailId")] CustomerModel customerModel)
+        public IActionResult Create([Bind("Name,Emailid")] CustomerModel customerModel)
         {
             if (ModelState.IsValid)
             {

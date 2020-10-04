@@ -8,12 +8,12 @@ namespace Book.Models
 {
     public class BookModel
     {
-        [StringLength(60, MinimumLength =3)]
+        [StringLength(60, MinimumLength = 3)]
         public string Title { get; set; }
 
-        [Display(Name = "Release Date")]
+        [Display(Name = "Releases Date")]
         [DataType(DataType.Date)]
-        public DataType ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         [Range(1, 100)]
         [DataType(DataType.Currency)]
