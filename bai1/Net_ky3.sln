@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newspaper1", "..\lab4\Newsp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentManagement", "..\lab4\ContentManagement\ContentManagement.csproj", "{137A20E3-6E0C-44F2-B48B-C591D8522200}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab5_Product", "..\lab5\lab5_Product\lab5_Product.csproj", "{FD4905E3-4BB4-4C80-8445-0C4416CDE689}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{137A20E3-6E0C-44F2-B48B-C591D8522200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{137A20E3-6E0C-44F2-B48B-C591D8522200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{137A20E3-6E0C-44F2-B48B-C591D8522200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4905E3-4BB4-4C80-8445-0C4416CDE689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4905E3-4BB4-4C80-8445-0C4416CDE689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4905E3-4BB4-4C80-8445-0C4416CDE689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4905E3-4BB4-4C80-8445-0C4416CDE689}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
