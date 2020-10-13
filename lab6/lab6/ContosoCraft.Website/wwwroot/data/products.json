@@ -8,7 +8,9 @@
     "Description": "This project is a good learning project to get comfortable with soldering and programming an Arduino.",
     "Ratings": [
       4,
-      5
+      5,
+      3,
+      2
     ]
   },
   {
@@ -18,7 +20,12 @@
     "Url": "https://www.hackster.io/agent-hawking-1/book-light-dee7e4",
     "Title": "A beautiful switch-on book light",
     "Description": "Use craft items you have around the house, plus two LEDs and a LilyPad battery holder, to create a useful book light for reading in the dark.",
-    "Ratings": null
+    "Ratings": [
+      4,
+      3,
+      2,
+      5
+    ]
   },
   {
     "Id": "jenlooper-lightshow",
@@ -100,7 +107,16 @@
     "Title": "Hipster Dev",
     "Description": "Hipster Dev is busy coding away while styled in a camo jacket and orange beanie.",
     "Ratings": [
-      4
+      4,
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
     ]
   },
   {

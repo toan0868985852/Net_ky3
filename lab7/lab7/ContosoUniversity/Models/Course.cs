@@ -13,6 +13,7 @@ namespace ContosoUniversity.Models
         public string Title { get; set; }
         public int Credits { get; set; }
 
+        //liện kết với bảng Enrollments
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace ContosoUniversity.Models
         public string FirstMidName { get; set; }
         public DateTime EnrollmentDate { get; set; }
 
+        //một sinh viên có nhiều khóa học
+        //chỉ đến bảng Enrollment
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace ContosoCraft.Website.Models
         public string Description { get; set; }
 
         public int[] Ratings { get; set; }
-
+        //chuyển đổi chuỗi ra giá trị json
         public override string ToString() => JsonSerializer.Serialize<Product>(this);
         
 
