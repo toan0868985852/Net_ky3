@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Products</h1>
+</div>
+
+<div class="card-columns">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card">
+            <div class="card-img" style="background-image: url('@product.image');">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@product.name</h5>
+            </div>
+        </div>
+    }
+</div>
