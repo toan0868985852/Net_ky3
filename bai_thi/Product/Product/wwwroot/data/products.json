@@ -1,38 +1,38 @@
 ﻿[
   {
     "id": "sp1",
-    "name": "@jenlooper",
-    "image": "https://user-images.githubusercontent.com/41929050/61567048-13938600-aa33-11e9-9cfd-712191013192.jpeg",
+    "name": "Sách giáo khoa",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/1.jpg",
     "price": "12.3"
   },
   {
     "id": "sp2",
-    "name": "jenlooper",
-    "image": "https://user-images.githubusercontent.com/41929050/61567049-13938600-aa33-11e9-9c69-a4184bf8e524.jpeg",
+    "name": "Sách nâng cao",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/2.jpg",
     "price": "10.2"
   },
   {
     "id": "sp3",
-    "name": "@jenlooper",
-    "image": "https://user-images.githubusercontent.com/41929050/61567053-13938600-aa33-11e9-9780-104fe4019659.png",
+    "name": "Sách hay",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/3.jpg",
     "price": "20"
   },
   {
     "id": "sp4",
-    "name": "jenlooper",
-    "image": "https://user-images.githubusercontent.com/41929050/61567051-13938600-aa33-11e9-8ae7-0b5c19aafab4.jpeg",
+    "name": "Sách Giáo dục",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/4.jpg",
     "price": "31"
   },
   {
     "id": "sp5",
-    "name": "sailorhg",
-    "image": "https://user-images.githubusercontent.com/41929050/61567054-13938600-aa33-11e9-9163-eec98e239b7a.png",
+    "name": "Sách hay",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/5.jpg",
     "price": "10"
   },
   {
     "id": "sp6",
-    "name": "sailorhg",
-    "image": "https://user-images.githubusercontent.com/41929050/61567055-142c1c80-aa33-11e9-96ff-9fbac6413625.png",
+    "name": "Sách đời sống",
+    "image": "https://raw.githubusercontent.com/toan0868985852/Net_ky3/master/bai_thi/image/6.jpg",
     "price": "20.1"
   }
   

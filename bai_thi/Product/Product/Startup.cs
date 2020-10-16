@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,6 +54,12 @@ namespace Product
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapGet("/products", (context) =>
+                {
+                    var products = app.ApplicationServices.GetService<ProductServices>().GetProducts();
+                    var json = JsonSerializer.Serialize<IEnumerable<Product.Models.Product>>(products);
+                    return context.Response.WriteAsync(json);
+                });
             });
         }
     }
