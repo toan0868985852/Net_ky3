@@ -1,0 +1,55 @@
+Bước 1: Tạo Project với MVC
+Bước 2: Trong Model
+	1. Tạo Drink để chứ dữ liệu
+
+	   public long DrinkID { get; set; }
+
+           public string Name { get; set; }
+
+           public string Description { get; set; }
+
+           public string Image { get; set; }
+  
+           [Column(TypeName = "decimal(8, 2)")]
+           public decimal Price { get; set; }
+
+           [Column(TypeName = "decimal(8, 2)")]
+           public decimal Discount { get; set; }
+
+           public string Status { get; set; }
+	2.Tạo StoreDbContext để kết nối với cơ sở dữ liệu
+
+Bước 3: Intall emtityframework
+	+ dotnet add DrinkStores package Microsoft.EntityFrameworkCore.Design
+     	+ dotnet add DrinkStores  package Microsoft.EntityFrameworkCore.SqlServer
+     	+ dotnet tool install --global dotnet-ef
+
+Bước 4: Add thêm ConectionStrings vào file appsetting.json
+Bước 5: Config file Start.cs
+using thêm thư viện vào Start.cs để kết nối tới cơ sở dữ liệu
+     + using Microsoft.EntityFrameworkCore;
+     + using AhihiStore_NEtCore_.Models;
+    sau đó vào iConfiguration thêm "set", 
+    Sửa ConfigureServices:
+      public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllersWithViews();
+            services.AddDbContext<StoreDbContext>(
+                opts =>
+                {
+                    opts.UseSqlServer 
+                        (Configuration["ConnectionStrings:DrinkStoresConnection"]);
+                }
+                );
+            services.AddScoped<IStoreRepository, EFStoreRepository>();
+                
+        }
+   (Nếu chưa cài Sql sever sẽ bị lỗi)
+
+Bước 6: Tạo IFStoResitory
+Bước 7: Tạo EfRepository increment từ IFStoResitory
+Bước 8: AddScoped vào files Startup.cs để có thể dùng được IStoreRepository, EFStoreRepository
+Bước 9: Tạo database Migrations: dotnet ef Migrations add Initial
+Bước 10: tạo dữ liêu seedData
+Bước 11: Add SeedData vào Startup.cs
+Bước 12: Chạy chương trình và kiểm tra trong Sql
