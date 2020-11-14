@@ -1,0 +1,123 @@
+* Xoá database : PM> dotnet ef database drop --force --context StoreDbContext 
+		     dotnet ef database drop --project <Tên project>--force --context StoreDbContext
+* Xóa migrations: b1: dotnet ef database drop --project AhihiStore --force --context StoreDbContext
+		  b2: dotnet ef migrations remove
+		  b3: dotnet ef migrations add Initial
+Bước 1 : Add using  AhihiStore.Models (Hiển thị sản phẩm)
+	 private IStoreRepository repository;
+	 
+	 public HomeController(IStoreRepository repo)
+        {
+            repository = repo;
+        }
+ 	 public IActionResult Index() => View(repository.Products); 
+	=> HomeControllers.cs 
+Bước 2 : Add using System.Linq;(Phân trang)
+
+	 public int PageSize = 4;
+
+	 public IActionResult Index(int productPage = 1)
+            => View(repository.Products
+                .OrderBy(p => p.ProductID)
+                .Skip((productPage - 1) * PageSize)
+                .Take(PageSize)
+            );
+	=> HomeControllers.cs 
+
+Bước 3 : Create PagingInfo (folder ViewModels) => folder Models
+	//Tag Helper
+	public int TotalItems { get; set; } //tổng số mặt hàng
+        public int ItemsPerPage { get; set; }
+        public int CurrentPage { get; set; }  //Trang hiện tại
+
+        public int TotalPages => (int)Math.Ceiling((decimal)TotalItems/ItemsPerPage); //tổng số trang
+
+Bước 4 : //Tag Helpers
+	 Create folder Infrastructure -> PageLinkTagHelper.cs
+	 using Microsoft.AspNetCore.Mvc;
+	 using Microsoft.AspNetCore.Mvc.Rendering;
+	 using Microsoft.AspNetCore.Mvc.Routing;
+	 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+	 using Microsoft.AspNetCore.Razor.TagHelpers;
+	 using AhihiStore.Models.ViewModels;
+
+	 [HtmlTargetElement("div", Attributes="page-model")]
+    	 public class PageLinkTagHelper : TagHelper
+    	 {
+        	private IUrlHelperFactory urlHelperFactory;
+
+        	public PageLinkTagHelper(IUrlHelperFactory helperFactory)
+        	{
+            		urlHelperFactory = helperFactory;
+        	}
+
+        	[ViewContext]
+        	[HtmlAttributeNotBound]
+        	public ViewContext ViewContext { get; set; }
+	 	public PagingInfo PageModel { get; set; }
+        	public string PageAction { get; set; }
+        	public override void Process(TagHelperContext context, TagHelperOutput output)
+        	{
+            		IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
+			TagBuilder result = new TagBuilder("div");
+            		for(int i = 1;i <= PageModel.TotalPages; i++)
+            		{
+                		TagBuilder tag = new TagBuilder("a");
+                		tag.Attributes["href"] = urlHelper.Action(PageAction, new
+                		{
+                    			productPage = i
+                		});
+				tag.InnerHtml.Append(i.ToString());
+				result.InnerHtml.AppendHtml(tag);
+            		}
+			output.Content.AppendHtml(result.InnerHtml);
+        	}
+    	 }
+Bước 5 : Add using AhihiStore.Models.ViewModels => _ViewImports.cshtml(folder View)
+	@using DrinkStores
+	@using DrinkStores.Models
+	@using DrinkStores.Models.ViewModels;
+	@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+	@addTagHelper *, DrinkStores
+	 
+
+Bước 6 :  Create ProductsListViewModel => folder ViewModels // Tạo View Model Data 
+
+	  public IEnumerable<Product> Products { get; set; }
+          public PagingInfo PagingInfo { get; set; }
+Bước 7 : Add using AhihiStore.Models.ViewModels; 
+	 Edit:
+		pprivate IStoreRepository repository;
+        public int PageSize = 4;
+
+        public HomeController(IStoreRepository repo)
+        {
+            repository = repo;
+        }
+
+        //public ViewResult Index(int drinkPage = 1)
+        //    => View(repository.Drinks
+        //        .OrderBy(p => p.DrinkID)
+        //        .Skip((drinkPage - 1) * PageSize)
+        //        .Take(PageSize)
+        //        );
+
+        public ViewResult Index(int productpage = 1)
+            => View(new ProductsListViewModel
+            {
+                Drinks = repository.Drinks
+                .OrderBy(p => p.DrinkID)
+                .Skip((productpage - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = productpage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Drinks.Count()
+                }
+            });
+	 => HomeController.cs  	
+Bước 8 : add @model ProductsListViewModel //comment @model IQueryable<Product>	
+	 edit @foreach (var p in Model.Products)
+	 <div page-model="@Model.PagingInfo" page-action="Index"></div>
+	 => Index.cshtml

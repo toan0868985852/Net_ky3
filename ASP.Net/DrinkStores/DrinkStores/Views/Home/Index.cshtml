@@ -1,0 +1,29 @@
+﻿@*@model IQueryable<Drink>*@
+@model ProductsListViewModel;
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>DrinkStores</title>
+        <link rel="stylesheet" href="~/css/stylet.css">
+    </head>
+    <body>
+        <header class="drinkstores">Drink Stores</header>
+        <hr>
+        <div class="box-product">
+            @foreach (var p in Model.Drinks)
+            {
+                <div class="products">
+                    <h3 class="title">@p.Name</h3>
+                    <img class="img" src="~/Img/@p.Image"  width="300px">
+                    <div class="text">
+                        <div class="Description">@p.Description</div>
+                        <div class="price">@p.Price<span>$</span></div>
+                    </div>
+                </div>
+            }
+        </div>
+            <div class="page" page-model="@Model.PagingInfo" page-action="Index"></div>
+    </body>
+    </html>
+
+
+
