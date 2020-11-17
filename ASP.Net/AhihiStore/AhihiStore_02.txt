@@ -121,3 +121,55 @@ Bước 8 : add @model ProductsListViewModel //comment @model IQueryable<Product
 	 edit @foreach (var p in Model.Products)
 	 <div page-model="@Model.PagingInfo" page-action="Index"></div>
 	 => Index.cshtml
+*Nếu muốn sửa lại route để thay cho route mặc định
+vào startup
+app.UseEndpoints(endpoints =>
+            {
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    "pagination", "Drinks/Page{drinkPage}",
+                    new { Controller = "Home", action = "Index" });
+                endpoints.MapDefaultControllerRoute();
+            });
+
+bước 9 cài đặt thư viện
+xóa thư viện có sẵn
+dotnet tool uninstall --global Microsoft.Web.LibraryManager.Cli
+
+cài thư viện có sẵn
+dotnet tool install --global microsoft.web.librarymanager.cli
+
+bước 10: cài đặt bootstrap
+libman init -p cdnjs
+libman install twitter-bootstrap@4.3.1 -d wwwroot/lib/twitter-bootstrap
+
+bước 11: sửa lại file layout thêm bootstrap
+bước 12: sửa lại file index thêm bootstrap
+
+Bước 13:
+thêm đoạn này vào trong PageLinkTagHelper.cs
+
+	public bool PageClassesEnabled { get; set; } = false;
+
+        public string PageClass { get; set; }
+
+        public string PageClassNormal { get; set; }
+
+        public string PageClassSelected { get; set; }
+
+
+đoạn code này là để hiển thị màu cho nút phân trang trong index
+
+Bước 14 sử dụng razor component để hiển thị
+trong view -> shared tạo file view
+copy đoạn code trong vòng lặp for của file index vào file ProductsSummary
+
+Bước 15: sửa file index
+ @foreach (var p in Model.Drinks)
+            {
+                <partial name="ProductsSummary" model="p"/>
+                //p được truyền sang ProductsSummary bằng model
+            }
+ 

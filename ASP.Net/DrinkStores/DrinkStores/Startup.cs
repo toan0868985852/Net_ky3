@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Threading.Tasks;
 using DrinkStores.Models;
 using Microsoft.AspNetCore.Builder;
@@ -60,9 +61,13 @@ namespace DrinkStores
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination", "Drinks/Page{drinkPage}",
+                    new { Controller = "Home", action = "Index" });
+                endpoints.MapDefaultControllerRoute();
             });
             SeedData.EnsurePopulated(app);
         }
