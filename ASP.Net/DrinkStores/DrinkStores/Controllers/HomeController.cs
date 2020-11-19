@@ -24,10 +24,26 @@ namespace DrinkStores.Controllers
         //        .Take(PageSize)
         //        );
 
-        public ViewResult Index(int drinkPage = 1)
+        //public ViewResult Index(int drinkPage = 1)
+        //    => View(new ProductsListViewModel
+        //    {
+        //        Drinks = repository.Drinks
+        //        .OrderBy(p => p.DrinkID)
+        //        .Skip((drinkPage - 1) * PageSize)
+        //        .Take(PageSize),
+        //        PagingInfo = new PagingInfo
+        //        {
+        //            CurrentPage = drinkPage,
+        //            ItemsPerPage = PageSize,
+        //            TotalItems = repository.Drinks.Count()
+        //        }
+        //    });
+
+        public ViewResult Index(string category, int drinkPage = 1)
             => View(new ProductsListViewModel
             {
                 Drinks = repository.Drinks
+                .Where(p => category == null || p.Status == category)
                 .OrderBy(p => p.DrinkID)
                 .Skip((drinkPage - 1) * PageSize)
                 .Take(PageSize),
@@ -38,7 +54,6 @@ namespace DrinkStores.Controllers
                     TotalItems = repository.Drinks.Count()
                 }
             });
-            
 
     }
 }

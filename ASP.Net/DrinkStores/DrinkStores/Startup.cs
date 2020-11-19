@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
@@ -7,6 +7,7 @@ using DrinkStores.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,9 +65,31 @@ namespace DrinkStores
                 //endpoints.MapControllerRoute(
                 //    name: "default",
                 //    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+                //endpoints.MapControllerRoute(
+                //    "pagination", "Drinks/Page{drinkPage}",
+                //    new { Controller = "Home", action = "Index" });
+
+
                 endpoints.MapControllerRoute(
-                    "pagination", "Drinks/Page{drinkPage}",
+                    "catpage", "{category}/Page{drinkPage:int}",
                     new { Controller = "Home", action = "Index" });
+                
+                //
+                endpoints.MapControllerRoute(
+                    "page", "Page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index" , drinkPage = 1});
+
+                endpoints.MapControllerRoute(
+                  "category", "{category}",
+                   new { Controller = "Home", action = "Index", drinkPage = 1 });
+
+                ///chỉ phân trang
+                endpoints.MapControllerRoute(
+                   "pagination", "Drinks/Page{drinkPage}",
+                   new { Controller = "Home", action = "Index", drinkPage = 1 });
+
                 endpoints.MapDefaultControllerRoute();
             });
             SeedData.EnsurePopulated(app);

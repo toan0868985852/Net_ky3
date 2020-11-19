@@ -173,3 +173,124 @@ Bước 15: sửa file index
                 //p được truyền sang ProductsSummary bằng model
             }
  
+
+Bước 16: trong productlistviewmodel 
+
+ 	public IEnumerable<Drink> Drinks { get; set; }
+        public PagingInfo PagingInfo { get; set; }
+        //thông tin về việc phân loại sản phẩm
+        public string CurrentCategory { get; set; }
+
+bước 17: trong homecontroller sửa
+ public ViewResult Index(string category, int drinkPage = 1)
+            => View(new ProductsListViewModel
+            {
+                Drinks = repository.Drinks
+                .Where(p => category == null || p.Status == category)
+                .OrderBy(p => p.DrinkID)
+                .Skip((drinkPage - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = drinkPage,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Drinks.Count()
+                }
+            });
+
+bước 18: sửa route trong startup thêm đường dẫn
+các cách phân loại đồ uống theo từng route khác nhau		
+
+		
+ 		endpoints.MapControllerRoute(
+                    "catpage", "{category}/Page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index" });
+
+		
+                endpoints.MapControllerRoute(
+                    "page", "Page{drinkPage:int}",
+                    new { Controller = "Home", action = "Index" , drinkPage = 1});
+
+                endpoints.MapControllerRoute(
+                  "category", "{category}",
+                   new { Controller = "Home", action = "Index", drinkPage = 1 });
+
+                ///chỉ phân trang
+                endpoints.MapControllerRoute(
+                   "pagination", "Drinks/Page{drinkPage}",
+                   new { Controller = "Home", action = "Index", drinkPage = 1 });
+
+và test theo từng đường dẫn trên trình duyệt
+
+Bước 19: trong PagelinkTagHelper thêm 
+	[HtmlAttributeName(DictionaryAttributePrefix = "page-url")]
+
+        public Dictionary<string, object> PageUrlValues { get; set; }
+        = new Dictionary<string, object>();
+
+	....................
+	
+	TagBuilder tag = new TagBuilder("a");
+                PageUrlValues["drinkPage"] = i;
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+
+                //tag.Attributes["href"] = urlHelper.Action(PageAction, new
+                //{
+                //    drinkPage = i
+                //});
+
+Bước 20: sửa Index
+	<div page-model="@Model.PagingInfo" page-action="Index" 
+             page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-outline-dark"
+             page-class-selected="btn-primary" 
+             page-url-category="@Model.CurrentCategory"
+             class="btn-group pull-right m-1"></div>
+
+Bước 21: Tạo foder components --> NavigationMenuViewComponents để có thể sử dụng lại 
+
+
+
+Bước 22: nếu muốn sử dụng view conponents trong _layout thêm 
+	<div id="categories" class="col-3" style="background-color: #ff6a00">
+            @*Put something usefull here later*@
+            <vc:navigation-menu-view-components />
+        </div>
+
+Bước 23: suawe file NavigationMenuViewComponents 
+public class NavigationMenuViewComponents : ViewComponent
+    {
+
+        private IStoreRepository repository;
+
+        public NavigationMenuViewComponents(IStoreRepository repo)
+        {
+            repository = repo;
+        }
+
+        public IViewComponentResult Invoke()
+        {
+            return View(repository.Drinks
+                .Select(x => x.Status)
+                .Distinct()
+                .OrderBy(x => x));
+        }
+    }
+
+Bước 23: trong share->NavigationMenuViewComponents -> Default
+@model IEnumerable<string>
+
+<a class="btn btn-block btn-outline-secondary"
+   asp-action="Index"
+   asp-controller="Home"
+   asp-route-category="">Home</a>
+
+@foreach (string category in Model)
+{
+    <a class="btn btn-block btn-outline-secondary"
+       asp-action="Index"
+       asp-controller="Home"
+       asp-route-category="@category"
+       asp-route-drinkPage="1">@category</a>
+}
+
