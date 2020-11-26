@@ -37,6 +37,10 @@ namespace DrinkStores
                 }
                 );
             services.AddScoped<IStoreRepository, EFStoreRepository>();
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
                 
         }
 
@@ -55,6 +59,8 @@ namespace DrinkStores
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
@@ -91,6 +97,7 @@ namespace DrinkStores
                    new { Controller = "Home", action = "Index", drinkPage = 1 });
 
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
             SeedData.EnsurePopulated(app);
         }

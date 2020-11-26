@@ -51,8 +51,13 @@ namespace DrinkStores.Controllers
                 {
                     CurrentPage = drinkPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Drinks.Count()
-                }
+                    //TotalItems = repository.Drinks.Count()
+                    TotalItems = category == null ?
+                    repository.Drinks.Count() : 
+                    repository.Drinks.Where(
+                        e => e.Status == category).Count()
+                },
+                CurrentCategory = category
             });
 
     }

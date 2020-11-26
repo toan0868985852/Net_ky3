@@ -3,7 +3,10 @@
 * Xóa migrations: b1: dotnet ef database drop --project AhihiStore --force --context StoreDbContext
 		  b2: dotnet ef migrations remove
 		  b3: dotnet ef migrations add Initial
+* chú ý : khi tạo xong một class phải nhấn ctrl + shift + B
+
 Bước 1 : Add using  AhihiStore.Models (Hiển thị sản phẩm)
+
 	 private IStoreRepository repository;
 	 
 	 public HomeController(IStoreRepository repo)
@@ -294,3 +297,225 @@ Bước 23: trong share->NavigationMenuViewComponents -> Default
        asp-route-drinkPage="1">@category</a>
 }
 
+Bước 24: thêm đoạn code để phân trang theo category sẽ có bao nhiêu sản phẩm một trang
+nếu category đó có 3 sản phẩm thì đó là một trang 
+còn nếu có nhiều hơn 3 sản phẩm thì sẽ tùy số lượng sản phẩm
+
+public ViewResult Index(string category, int drinkPage = 1)
+            => View(new ProductsListViewModel
+            {
+                Drinks = repository.Drinks
+                .Where(p => category == null || p.Status == category)
+                .OrderBy(p => p.DrinkID)
+                .Skip((drinkPage - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = drinkPage,
+                    ItemsPerPage = PageSize,
+                    //TotalItems = repository.Drinks.Count()
+                    TotalItems = category == null ?
+                    repository.Drinks.Count() : 
+                    repository.Drinks.Where(
+                        e => e.Status == category).Count()
+                },
+                CurrentCategory = category
+            });
+Bước 25: Tạo ra giỏ hàng
+-trong startup
+
+thêm vào ConfigureServices đoạn code là: services.AddRazorPages();
+thêm vào Configure -> UseEndpoints đoạn code là:  endpoints.MapRazorPages();
+
+Bước 26: trong solution thêm thư mục Pages
+- trong Pages tạo -> _ViewImports.cshtml
+trong Razor view imports thêm đoạn code
+
+@namespace DrinkStores.Pages
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@using DrinkStores.Models
+@using DrinkStores.Infrastructure
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+- trong Pages tạo -> _ViewStart.cshtml
+
+@{
+    Layout = "_Layout";
+}
+
+- trong Pages tạo Razor layout đặt tên là -> _CartLayout.cshtml
+
+- trong Pages tạo -> Razor Page đặt tên là Cart.cshtml
+
+Bước 27: trong Infrastructure thêm UrlExtensions.cs thêm đoạn code
+
+ public static class UrlExtensions
+    {
+        public static string PathAndQuery(this HttpRequest request)
+            => request.QueryString.HasValue
+            ? $"{request.Path}{request.QueryString}"
+            : request.Path.ToString();
+    }
+
+Bước 28: trong View -> ViewImports
+thêm đoạn code @using DrinkStores.Infrastructure
+
+Bước 29: trong View -> Shared -> ProductSumary.cshtml
+
+sửa :
+<div class="products">
+        <h3 class="title">@Model.Name</h3>
+        <img class="img" src="~/Img/@Model.Image" width="300" height="300">
+        <div class="text">
+            <div class="Description">@Model.Description</div>
+            <span class="badge badge-pill badge-primary" style="float: right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+        </div>
+        <form method="post" asp-page="/Cart" id="@Model.DrinkID">
+            <input type="hidden" asp-for="DrinkID" />
+            <input type="hidden" name="returnUrl"
+                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <span class="card-text p-1">
+                @Model.Description
+                <button type="submit" class="btn btn-success btn-sm pull-right" style="float:right">
+                    Add To Cart
+                </button>
+            </span>
+        </form>
+    </div>
+
+Bước 30: trong startup thêm đoạn code vào ConfigureServices
+
+ 	    services.AddDistributedMemoryCache();
+            services.AddSession();
+
+ -  trong startup thêm đoạn code vào Configure
+
+ 	app.UseSession();
+
+Bước 31: trong model -> Cart
+
+public class Cart
+    {
+        public List<CartLine> Lines { get; set; } = new List<CartLine>();
+
+        public void AddItem(Drink drink, int quantity)
+        {
+            CartLine line = Lines
+                .Where(p => p.Drink.DrinkID == drink.DrinkID)
+                .FirstOrDefault();
+            if(line == null)
+            {
+                Lines.Add(new CartLine
+                {
+                    Drink = drink,
+                    Quantity = quantity
+                });
+            }
+            else
+            {
+                line.Quantity += quantity;
+            }
+        }
+
+        public void RemoveLine(Drink drink)
+            => Lines.RemoveAll(l => l.Drink.DrinkID == drink.DrinkID);
+
+        public decimal ComputeTotalValue()
+            => Lines.Sum(e => e.Drink.Price * e.Quantity);
+
+        public void Clear()
+            => Lines.Clear();
+    }
+
+    public class CartLine
+    {
+        public int CartLineID { get; set; }
+        public Drink Drink { get; set; }
+        public int Quantity { get; set; }
+    }
+
+Bước 32 trong Infrastructure -> sessionExtention.cs
+
+    public static class SessionExtensions
+    {
+        public static void SetJson(this ISession session, string key, object value)
+        {
+            session.SetString(key, JsonSerializer.Serialize(value));
+        }
+        public static T GetJson<T>(this ISession session, string key)
+        {
+            var sessionData = session.GetString(key);
+            return sessionData == null
+                ? default(T) : JsonSerializer.Deserialize<T>(sessionData);
+        }
+    }
+
+Bước 33: trong Model -> Pages -> Cart.cshtml
+
+@model CartModel
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td class="text-center">@line.Quantity</td>
+                <td class="text-left">@line.Drink.Name</td>
+                <td class="text-right">@line.Drink.Price.ToString("c")</td>
+                <td class="text-right">@((line.Quantity*line.Drink.Price).ToString("c"))</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">@Model.Cart.ComputeTotalValue().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+</div>
+
+Bước 34: trong Model -> Pages -> Cart.cshtml -> Cart.cshtml.cs
+
+public class CartModel : PageModel
+    {
+
+        private IStoreRepository repository;
+        public CartModel(IStoreRepository repo)
+        {
+            repository = repo;
+        }
+
+        public Cart Cart { get; set; }
+        public string ReturnUrl { get; set; }
+        public void OnGet(string returnUrl)
+        {
+            returnUrl = returnUrl ?? "/";
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+        }
+
+        public IActionResult OnPost(long drinkID, string returnUrl)
+        {
+            Drink drink = repository.Drinks
+                .FirstOrDefault(p => p.DrinkID == drinkID);
+            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            Cart.AddItem(drink, 1);
+            HttpContext.Session.SetJson("cart", Cart);
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+    }
