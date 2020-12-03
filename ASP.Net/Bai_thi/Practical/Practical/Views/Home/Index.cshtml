@@ -1,0 +1,43 @@
+﻿@model IQueryable<Employees>
+
+
+<style>
+    thead {
+        color: green;
+    }
+
+    tbody {
+        width: 1000px;
+        text-align: center;
+        color: black;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>IMAGE</th>
+                <th>SEX</th>
+                <th>DATE OF BIRTH</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.EmployeesID</td>
+                    <td>@p.Name</td>
+                    <td><img src="~/Images/@p.Image" width="70px" /></td>
+                    <td>@p.Sex</td>
+                    <td>@p.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
