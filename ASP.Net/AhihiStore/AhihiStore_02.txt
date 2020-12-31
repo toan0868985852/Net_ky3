@@ -3,6 +3,12 @@
 * Xóa migrations: b1: dotnet ef database drop --project AhihiStore --force --context StoreDbContext
 		  b2: dotnet ef migrations remove
 		  b3: dotnet ef migrations add Initial
+
+[Column(TypeName = "decimal(8,2)")]
+
+* Tạo migrate: Add-Migration "InitialCreate"
+* Update database: Update-Database
+
 * chú ý : khi tạo xong một class phải nhấn ctrl + shift + B
 
 Bước 1 : Add using  AhihiStore.Models (Hiển thị sản phẩm)
